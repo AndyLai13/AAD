@@ -10,11 +10,15 @@
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme">
 		<provider
+			android:name=".MyContentProvider2"
+			android:authorities="com.andylai.aad"
+			android:enabled="true"
+			android:exported="true"></provider>
+		<provider
 			android:name=".MyContentProvider"
 			android:authorities="com.andylai.aad"
 			android:enabled="true"
-			android:exported="true">
-		</provider>
+			android:exported="true"></provider>
 
 		<activity android:name=".MainActivity">
 			<intent-filter>
