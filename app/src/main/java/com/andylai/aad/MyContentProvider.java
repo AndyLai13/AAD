@@ -19,12 +19,14 @@ import android.text.TextUtils;
 public class MyContentProvider extends ContentProvider {
 
 	static final String PROVIDER_NAME = "com.andylai.aad";
-	static final String URL = "content://" + PROVIDER_NAME + "/students";
-	static final Uri CONTENT_URI = Uri.parse(URL);
+	static final String STUDENTS_TABLE_NAME = "students";
 
-	static final String _ID = "_id";
-	static final String NAME = "name";
-	static final String GRADE = "grade";
+	public static final String URL = "content://" + PROVIDER_NAME + "/" + STUDENTS_TABLE_NAME;
+	public static final Uri CONTENT_URI = Uri.parse(URL);
+
+	public static final String _ID = "_id";
+	public static final String NAME = "name";
+	public static final String GRADE = "grade";
 
 	private static HashMap<String, String> STUDENTS_PROJECTION_MAP;
 
@@ -43,7 +45,6 @@ public class MyContentProvider extends ContentProvider {
 	 */
 	private SQLiteDatabase db;
 	static final String DATABASE_NAME = "college_test.db";
-	static final String STUDENTS_TABLE_NAME = "students";
 	static final int DATABASE_VERSION = 1;
 	static final String CREATE_DB_TABLE =
 			" CREATE TABLE " + STUDENTS_TABLE_NAME +
