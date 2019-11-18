@@ -34,15 +34,12 @@ public class MyContentProvider extends ContentProvider {
 	static final int STUDENT_ID = 2;
 
 	static final UriMatcher uriMatcher;
-	static{
+	static {
 		uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 		uriMatcher.addURI(PROVIDER_NAME, "students", STUDENTS);
 		uriMatcher.addURI(PROVIDER_NAME, "students/#", STUDENT_ID);
 	}
 
-	/**
-	 * 数据库特定常量声明
-	 */
 	private SQLiteDatabase db;
 	static final String DATABASE_NAME = "college_test.db";
 	static final int DATABASE_VERSION = 1;
@@ -52,9 +49,6 @@ public class MyContentProvider extends ContentProvider {
 					" name TEXT NOT NULL, " +
 					" grade TEXT NOT NULL);";
 
-	/**
-	 * 创建和管理提供者内部数据源的帮助类.
-	 */
 	private static class DatabaseHelper extends SQLiteOpenHelper {
 		DatabaseHelper(Context context){
 			super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -114,7 +108,6 @@ public class MyContentProvider extends ContentProvider {
 			case STUDENTS:
 				qb.setProjectionMap(STUDENTS_PROJECTION_MAP);
 				break;
-
 			case STUDENT_ID:
 				qb.appendWhere( _ID + "=" + uri.getPathSegments().get(1));
 				break;
@@ -171,7 +164,9 @@ public class MyContentProvider extends ContentProvider {
 				break;
 
 			case STUDENT_ID:
-				count = db.update(STUDENTS_TABLE_NAME, values, _ID + " = " + uri.getPathSegments().get(1) +
+				String id = uri.getPathSegments().get(1);
+
+				count = db.update(STUDENTS_TABLE_NAME, values, _ID + " = " + id +
 						(!TextUtils.isEmpty(selection) ? " AND (" +selection + ')' : ""), selectionArgs);
 				break;
 
