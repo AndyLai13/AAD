@@ -8,12 +8,21 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
 
 import static com.andylai.aad.MyContentProvider.CONTENT_URI;
+import static com.andylai.aad.MyContentProvider.GRADE;
 import static com.andylai.aad.MyContentProvider.NAME;
+import static com.andylai.aad.MyContentProvider._ID;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -22,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	EditText mId;
 	Button mBtnAdd;
 	Button mBtnRetrieve;
+	Button mBtnRefresh;
+	ListView listView;
+	SimpleCursorAdapter mAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +43,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		mName = findViewById(R.id.name);
 		mGrade = findViewById(R.id.number);
 		mId = findViewById(R.id.identifier);
-
+		listView = findViewById(R.id.listView);
 		mBtnAdd = findViewById(R.id.add);
 		mBtnRetrieve = findViewById(R.id.retrieve);
+		mBtnRefresh = findViewById(R.id.refresh);
+
+		mAdapter = new SimpleCursorAdapter(this, R.layout.layout_list_view, null,
+				new String[]{_ID, NAME, GRADE},
+				new int[]{R.id.id_number, R.id.name, R.id.number}, 0);
+		listView.setAdapter(mAdapter);
+
 		mBtnAdd.setOnClickListener(this);
 		mBtnRetrieve.setOnClickListener(this);
+		mBtnRefresh.setOnClickListener(this);
+
+		LoaderManager.getInstance(this).initLoader(0, null, mLoaderCallback);
 	}
 
 	@Override
@@ -82,6 +104,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 					c.close();
 				}
 				break;
+			case R.id.refresh:
+				break;
 		}
 	}
+
+	LoaderManager.LoaderCallbacks<Cursor> mLoaderCallback = new LoaderManager.LoaderCallbacks<Cursor>() {
+		@NonNull
+		@Override
+		public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
+			return new CursorLoader(MainActivity.this, CONTENT_URI,
+					null, null, null, null);
+		}
+
+		@Override
+		public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
+			mAdapter.swapCursor(data);
+		}
+
+		@Override
+		public void onLoaderReset(@NonNull Loader<Cursor> loader) {
+			mAdapter.swapCursor(null);
+		}
+	};
 }
