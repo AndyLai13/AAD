@@ -10,17 +10,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-	Button mBtnQueryData;
-	Button mBtnRecycler;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		mBtnQueryData = findViewById(R.id.query_data);
-		mBtnRecycler = findViewById(R.id.recycler);
-		mBtnQueryData.setOnClickListener(this);
-		mBtnRecycler.setOnClickListener(this);
+		findViewById(R.id.query_data).setOnClickListener(this);
+		findViewById(R.id.recycler).setOnClickListener(this);
+		findViewById(R.id.my_action_bar).setOnClickListener(this);
+		findViewById(R.id.my_action_bar).performClick();
 	}
 
 	@Override
@@ -32,6 +30,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 				break;
 			case R.id.recycler:
 				intent.setComponent(new ComponentName(this, RecyclerActivity.class));
+				break;
+			case R.id.my_action_bar:
+				intent.setComponent(new ComponentName(this, MyActionBarActivity.class));
 				break;
 		}
 		startActivity(intent);
