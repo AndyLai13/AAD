@@ -7,6 +7,7 @@
 	tools:context=".MyActionBarActivity">
 
 	<androidx.appcompat.widget.Toolbar
+		android:id="@+id/my_toolbar"
 		app:layout_constraintTop_toTopOf="parent"
 		android:layout_width="match_parent"
 		android:layout_height="?attr/actionBarSize"
@@ -16,6 +17,5 @@
 		android:background="@color/colorPrimary"
 		app:subtitle="test"
 		android:elevation="4dp"
-		app:subtitleTextColor="@color/colorAccent"
-		app:navigationIcon="@mipmap/ic_launcher_round"/>
+		app:subtitleTextColor="@color/colorAccent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
