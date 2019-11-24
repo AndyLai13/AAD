@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.andylai.aad">
 
+	<uses-permission android:name="android.permission.INTERNET"/>
+
 	<application
 		android:allowBackup="true"
 		android:icon="@mipmap/ic_launcher"
@@ -9,10 +11,13 @@
 		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
 		android:theme="@style/AppTheme">
-		<activity
-			android:name=".MyActionBarActivity"
-			android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-		</activity>
+		<activity android:name=".AsyncTaskActivity"></activity>
+		<activity android:name=".SchedulerActivity" />
+
+		<service
+			android:name=".JobSchedulerService"
+			android:exported="true"
+			android:permission="android.permission.BIND_JOB_SERVICE" />
 
 		<activity android:name=".RecyclerActivity" />
 		<activity android:name=".QueryDataActivity" />
