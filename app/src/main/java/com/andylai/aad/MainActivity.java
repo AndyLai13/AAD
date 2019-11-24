@@ -4,7 +4,6 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,24 +16,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		setContentView(R.layout.activity_main);
 		findViewById(R.id.query_data).setOnClickListener(this);
 		findViewById(R.id.recycler).setOnClickListener(this);
-		findViewById(R.id.my_action_bar).setOnClickListener(this);
-		findViewById(R.id.my_action_bar).performClick();
+		findViewById(R.id.job_scheduler).setOnClickListener(this);
+		findViewById(R.id.async_task).setOnClickListener(this);
+
+		findViewById(R.id.async_task).performClick();
 	}
 
 	@Override
 	public void onClick(View v) {
 		Intent intent = new Intent();
+		ComponentName comp;
 		switch (v.getId()) {
 			case R.id.query_data:
-				intent.setComponent(new ComponentName(this, QueryDataActivity.class));
+				comp = new ComponentName(this, QueryDataActivity.class);
 				break;
 			case R.id.recycler:
-				intent.setComponent(new ComponentName(this, RecyclerActivity.class));
+				comp = new ComponentName(this, RecyclerActivity.class);
 				break;
-			case R.id.my_action_bar:
-				intent.setComponent(new ComponentName(this, MyActionBarActivity.class));
+			case R.id.job_scheduler:
+				comp = new ComponentName(this, SchedulerActivity.class);
 				break;
+			case R.id.async_task:
+				comp = new ComponentName(this, AsyncTaskActivity.class);
+				break;
+			default:
+				comp = null;
 		}
-		startActivity(intent);
+
+		if (comp != null) {
+			intent.setComponent(comp);
+			startActivity(intent);
+		}
 	}
 }
