@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -18,8 +19,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		findViewById(R.id.recycler).setOnClickListener(this);
 		findViewById(R.id.job_scheduler).setOnClickListener(this);
 		findViewById(R.id.async_task).setOnClickListener(this);
+		findViewById(R.id.drawer).setOnClickListener(this);
 
-		findViewById(R.id.async_task).performClick();
+		findViewById(R.id.drawer).performClick();
 	}
 
 	@Override
@@ -38,6 +40,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 				break;
 			case R.id.async_task:
 				comp = new ComponentName(this, AsyncTaskActivity.class);
+				break;
+			case R.id.drawer:
+				comp = new ComponentName(this, NavDrawerActivity.class);
 				break;
 			default:
 				comp = null;
