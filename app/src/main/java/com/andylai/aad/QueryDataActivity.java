@@ -41,9 +41,9 @@ public class QueryDataActivity extends AppCompatActivity implements View.OnClick
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_query_data);
 
-		mName = findViewById(R.id.name);
-		mGrade = findViewById(R.id.grade);
-		mId = findViewById(R.id.identifier);
+		mName = findViewById(R.id.edit_name);
+		mGrade = findViewById(R.id.edit_grade);
+		mId = findViewById(R.id.edit_identifier);
 		listView = findViewById(R.id.listView);
 		mBtnAdd = findViewById(R.id.add);
 		mBtnRetrieve = findViewById(R.id.retrieve);
@@ -51,7 +51,7 @@ public class QueryDataActivity extends AppCompatActivity implements View.OnClick
 
 		mAdapter = new SimpleCursorAdapter(this, R.layout.layout_list_view, null,
 				new String[]{_ID, NAME, GRADE},
-				new int[]{R.id.id_number, R.id.name, R.id.grade}, 0);
+				new int[]{R.id.id_number, R.id.edit_name, R.id.edit_grade}, 0);
 		listView.setAdapter(mAdapter);
 
 		mBtnAdd.setOnClickListener(this);

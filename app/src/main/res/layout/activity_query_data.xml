@@ -22,7 +22,7 @@
 		</TextView>
 
 		<EditText
-			android:id="@+id/name"
+			android:id="@+id/edit_name"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:inputType="text">
@@ -47,7 +47,7 @@
 
 
 		<EditText
-			android:id="@+id/grade"
+			android:id="@+id/edit_grade"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:inputType="number">
@@ -71,7 +71,7 @@
 
 
 		<EditText
-			android:id="@+id/identifier"
+			android:id="@+id/edit_identifier"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:inputType="number">

@@ -20,8 +20,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		findViewById(R.id.job_scheduler).setOnClickListener(this);
 		findViewById(R.id.async_task).setOnClickListener(this);
 		findViewById(R.id.drawer).setOnClickListener(this);
+		findViewById(R.id.start_service).setOnClickListener(this);
+		findViewById(R.id.bind_service).setOnClickListener(this);
 
-		findViewById(R.id.drawer).performClick();
 	}
 
 	@Override
@@ -43,6 +44,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 				break;
 			case R.id.drawer:
 				comp = new ComponentName(this, NavDrawerActivity.class);
+				break;
+			case R.id.start_service:
+				comp = new ComponentName(this, StartServiceActivity.class);
+				break;
+			case R.id.bind_service:
+				comp = new ComponentName(this, BIndServiceActivity.class);
 				break;
 			default:
 				comp = null;

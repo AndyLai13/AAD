@@ -10,8 +10,14 @@ public class MyService extends Service {
 
 	class MyBinder extends Binder {
 		public void startDownload() {
+			testMethod();
 			Log.d("Andy", "startDownLoad");
 		}
+	}
+
+	void testMethod() {
+		Log.d("Andy", "testMethod");
+
 	}
 
 	MyBinder mBinder = new MyBinder();
@@ -21,7 +27,16 @@ public class MyService extends Service {
 
 	@Override
 	public IBinder onBind(Intent intent) {
+		Log.d("Andy", "onBind");
+
 		return mBinder;
+	}
+
+	@Override
+	public boolean onUnbind(Intent intent) {
+		Log.d("Andy", "onUnbind");
+
+		return super.onUnbind(intent);
 	}
 
 	@Override
